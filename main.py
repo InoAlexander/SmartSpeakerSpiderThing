@@ -1,6 +1,7 @@
 import pyttsx3
+import pywhatkit 
 import speech_recognition as sr
-
+import datetime
 
 # speech recognition  basically this is going to listen for voice input using the python speech recognition library.
 listener = sr.Recognizer()
@@ -42,8 +43,9 @@ def user_command():
     if 'play' in command:
         song = command.replace('play, i want to listen to, put on some, i want to listen to some,', '')
         speak('playing' + song)
-        print(song)
-        
+        pywhatkit.playonyt(song)
+    elif 'time' in command:
+            
         
         
 while True:
