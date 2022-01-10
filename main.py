@@ -2,6 +2,8 @@ import pyttsx3
 import pywhatkit 
 import speech_recognition as sr
 import datetime
+import wikipedia
+# import pyjokes 
 
 # speech recognition  basically this is going to listen for voice input using the python speech recognition library.
 listener = sr.Recognizer()
@@ -10,10 +12,11 @@ engine = pyttsx3.init()# initializes python text to speach engine
 # if you wanted to change the voice...
 #declared variable
 voices = engine.getProperty('voices')
-
+engine.say('Initialization process complete I am franc, i am at your service')
 # telling the engine to set the paroperty in accordance to the library used, reference the docs
 # engine.setProperty('voice', voices[anyInt].id)
-engine.say('i am the friendly robotic automata, now conceptualized, call me franc for short, my creator is eeno alexander, i am awaiting command')
+
+
 
 def speak(text):
     #this is what frank will say when activated intially by his name
@@ -43,10 +46,27 @@ def user_command():
     if 'play' in command:
         song = command.replace('play, i want to listen to, put on some, i want to listen to some,', '')
         speak('playing' + song)
-        pywhatkit.playonyt(song)
+        pywhatkit.playonyt(song) #plays on youtube, reference docs for more options
+        # below will be in reference to asking the time.
     elif 'time' in command:
-            
-        
+        time = datetime.datetime.now().strftime('%I:%H:%M %p')
+        speak('the current time is ' + time)
+        # this will be searching wikipedia for  information
+    elif 'who is' in command:
+        person = command.replace('who is', '')# who is is arbitrary and is the command the user will speak. this can be anything and may want to accomodate for different commands
+        info = wikipedia.summary(person, 10) # this is determining how many sentences franc will read from wikipedia
+        speak(info)
+    elif 'who are you' in command:
+        speak('i am the friendly robotic automata, now conceptualized, call me franc for short, my creator is eeno alexander, i am awaiting command')
+    elif 'what is your purpose' in command:
+        speak('to protect elizabeth birge and eliminate threats and her foes')
+    # elif 'joke' in command:
+    #     speak(pyjokes.getjoke())
+    
+    
+    
+    else:
+        speak('speak clearly my man, i cannot understand you, repeat your command')
         
 while True:
     user_command
