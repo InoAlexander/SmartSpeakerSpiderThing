@@ -6,9 +6,16 @@ import speech_recognition as sr
 listener = sr.Recognizer()
 engine = pyttsx3.init()# initializes python text to speach engine
 
+# if you wanted to change the voice...
+#declared variable
+voices = engine.getProperty('voices')
+
+# telling the engine to set the paroperty in accordance to the library used, reference the docs
+# engine.setProperty('voice', voices[anyInt].id)
+
 #this is what frank will say when activated intially by his name
-engine.say('I am franc your eternal friend, what can i do to be of service')
-engine.say('i am the friendly robotic automata now conceptualized, but you can call me franc for short, awaiting command')
+engine.say('i am the friendly robotic automata, now conceptualized, call me franc for short, my creator is eeno alexander, i am awaiting command')
+engine.runAndWait()
 
 try:
     with sr.Microphone() as source:
