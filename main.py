@@ -27,15 +27,24 @@ def prompt_command():
             command = listener.recognize_google(voice) # uses google voice 
             command = command.lower()#computers like lowercase letters and it makes it easier for it to interpret what is being said.
             if 'frank' in command:
-                command = command.replace
+                command = command.replace('franc', '') #removes francs from the command so it isnt said or printed to the console as part of the query.
                 print(command)
     except:
         pass
     return command
 
+# we are calling the above function and giving the command below
 # will take the command function from user from the prompt_command function above.
 def user_command():
     command = prompt_command()
+    print(command)
+    # for playing songs
     if 'play' in command:
+        song = command.replace('play, i want to listen to, put on some, i want to listen to some,', '')
+        speak('playing' + song)
+        print(song)
         
-        print('playing')
+        
+        
+while True:
+    user_command
